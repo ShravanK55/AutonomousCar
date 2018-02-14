@@ -42,17 +42,6 @@ class ScreenShot:
         cv2.imwrite(self.location+self.fileName+str(self.count)+".jpg", image)
         #print(self.location+self.fileName+str(self.count)+".jpg")
 
-    def detectEdge(self,image):
-        image = cv2.Canny(image, threshold1=200, threshold2=550)
-        return image
-
-    def drawLine(self,image):
-        lines = cv2.HoughLines(image, 1, np.pi/2, 6, None, 50, 10)
-        for line in lines[0]:
-            pt1 = (line[0], line[1])
-            pt2 = (line[2], line[3])
-            cv2.line(image, pt1, pt2, (0, 0, 255), 2)
-        return image
 
     def Init(self):
         while(cv2.waitKey(1) != 27):
