@@ -37,7 +37,7 @@ usage:
     sshot1 = screencapture.ScreenShot(0,0,400,400,True) //True will Enabe to save Image.
     sshot2 = screencaptere.ScreenShot(0,0,400,400,False) // False will Disable saving Of Image.
 ```
-![axis](Tumbnails/Demo1.png)
+![axis](Tumbnails/demo1.png)
 
 The follwoing function can be applied on the ScreenShot object.
 * `setSaveLocation(Param)`
