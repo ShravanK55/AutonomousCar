@@ -81,3 +81,9 @@ UnrealProject/RacingSim/Content/Static/*
 
 # Maps
 *.umap
+
+# TORCS
+torcs/*
+
+# Udacity Sim
+BetaSim/*
