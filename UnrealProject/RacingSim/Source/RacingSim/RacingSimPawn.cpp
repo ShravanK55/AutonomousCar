@@ -170,6 +170,9 @@ ARacingSimPawn::ARacingSimPawn()
 
 	bIsLowFriction = false;
 	bInReverseGear = false;
+
+	// Agent settings
+	Autonomous = false;
 }
 
 void ARacingSimPawn::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
@@ -189,27 +192,45 @@ void ARacingSimPawn::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAction("SwitchCamera", IE_Pressed, this, &ARacingSimPawn::OnToggleCamera);
 
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ARacingSimPawn::OnResetVR); 
+	
+	PlayerInputComponent->BindAction("SwitchAutonomous", IE_Pressed, this, &ARacingSimPawn::SwitchAutonomous);
+}
+
+void ARacingSimPawn::SwitchAutonomous()
+{
+	Autonomous = !Autonomous;
 }
 
 void ARacingSimPawn::MoveForward(float Val)
 {
-	GetVehicleMovementComponent()->SetThrottleInput(Val);
-
+	if (!Autonomous)
+	{
+		GetVehicleMovementComponent()->SetThrottleInput(Val);
+	}
 }
 
 void ARacingSimPawn::MoveRight(float Val)
 {
-	GetVehicleMovementComponent()->SetSteeringInput(Val);
+	if (!Autonomous)
+	{
+		GetVehicleMovementComponent()->SetSteeringInput(Val);
+	}
 }
 
 void ARacingSimPawn::OnHandbrakePressed()
 {
-	GetVehicleMovementComponent()->SetHandbrakeInput(true);
+	if (!Autonomous)
+	{
+		GetVehicleMovementComponent()->SetHandbrakeInput(true);
+	}
 }
 
 void ARacingSimPawn::OnHandbrakeReleased()
 {
-	GetVehicleMovementComponent()->SetHandbrakeInput(false);
+	if (!Autonomous)
+	{
+		GetVehicleMovementComponent()->SetHandbrakeInput(false);
+	}
 }
 
 void ARacingSimPawn::OnToggleCamera()

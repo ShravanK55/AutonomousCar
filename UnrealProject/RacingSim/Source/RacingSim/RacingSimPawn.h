@@ -73,6 +73,10 @@ public:
 	UPROPERTY(Category = Camera, VisibleDefaultsOnly, BlueprintReadOnly)
 	bool bInReverseGear;
 
+	/** Should the car drive autonomously */
+	UPROPERTY(Category = Agent, VisibleAnywhere, BlueprintReadWrite)
+	bool Autonomous;
+
 	/** Initial offset of incar camera */
 	FVector InternalCameraOrigin;
 
@@ -107,6 +111,9 @@ public:
 	void OnToggleCamera();
 	/** Handle reset VR device */
 	void OnResetVR();
+
+	/** Switch car to drive autonomously. */
+	void SwitchAutonomous();
 
 	static const FName LookUpBinding;
 	static const FName LookRightBinding;
