@@ -77,6 +77,14 @@ public:
 	UPROPERTY(Category = Agent, VisibleAnywhere, BlueprintReadWrite)
 	bool Autonomous;
 
+	/** Used to store steering angle given by the race-line following component */
+	UPROPERTY(Category = Agent, VisibleAnywhere, BlueprintReadWrite)
+	FVector Steering;
+
+	/** Used to store throttle given by the race-line following component */
+	UPROPERTY(Category = Agent, VisibleAnywhere, BlueprintReadWrite)
+	float Throttle;
+
 	/** Initial offset of incar camera */
 	FVector InternalCameraOrigin;
 
