@@ -272,7 +272,7 @@ void ARacingSimPawn::Tick(float Delta)
 	UpdatePhysicsMaterial();
 
 	// Update the strings used in the hud (incar and onscreen)
-	UpdateHUDStrings();
+	// UpdateHUDStrings();
 
 	// Set the string in the incar hud
 	SetupInCarHUD();
