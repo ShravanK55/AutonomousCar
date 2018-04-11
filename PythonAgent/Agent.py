@@ -6,6 +6,11 @@
 #	iguring agent.
 #
 #****************************************************#
-
 import os
+import Tkinter
+from ConvolutionalNetwork.screencaptureLinux import ScreenShot
+
+sc = ScreenShot(100,100,700,700,False,"/ConvolutionalNetwork/models/MobileNetSSD_deploy.prototxt","/ConvolutionalNetwork/models/MobileNetSSD_deploy.caffemodel")
+sc.run()
+
 
