@@ -73,6 +73,18 @@ public:
 	UPROPERTY(Category = Camera, VisibleDefaultsOnly, BlueprintReadOnly)
 	bool bInReverseGear;
 
+	/** Should the car drive autonomously */
+	UPROPERTY(Category = Agent, VisibleAnywhere, BlueprintReadWrite)
+	bool Autonomous;
+
+	/** Used to store steering angle given by the race-line following component */
+	UPROPERTY(Category = Agent, VisibleAnywhere, BlueprintReadWrite)
+	FVector Steering;
+
+	/** Used to store throttle given by the race-line following component */
+	UPROPERTY(Category = Agent, VisibleAnywhere, BlueprintReadWrite)
+	float Throttle;
+
 	/** Initial offset of incar camera */
 	FVector InternalCameraOrigin;
 
@@ -107,6 +119,9 @@ public:
 	void OnToggleCamera();
 	/** Handle reset VR device */
 	void OnResetVR();
+
+	/** Switch car to drive autonomously. */
+	void SwitchAutonomous();
 
 	static const FName LookUpBinding;
 	static const FName LookRightBinding;
