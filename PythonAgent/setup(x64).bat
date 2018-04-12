@@ -16,6 +16,9 @@ bitsadmin /transfer "Python PIL setup" http://effbot.org/media/downloads/PIL-1.1
 start /wait %CD%\PIL-1.1.7.win32-py2.7.exe
 del %CD%\PIL-1.1.7.win32-py2.7.exe
 
+bitsadmin /transfer "cmake setup" https://cmake.org/files/v3.11/cmake-3.11.0-win64-x64.msi %CD%\cmake-3.11.0-win64-x64.msi
+start /wait %CD%\cmake-3.11.0-win64-x64.msi
+del %CD%\cmake-3.11.0-win64-x64.msi
 python %CD%\SetupFiles\get-pip.py
 echo Installing Dependecies.
 python -m pip install opencv-python
