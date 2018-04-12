@@ -7,10 +7,14 @@
 #
 #****************************************************#
 import os
-import Tkinter
-from ConvolutionalNetwork.screencaptureLinux import ScreenShot
+import tkinter
+from tkinter import Tk, Label, Button
+#from ConvolutionalNetwork.screencaptureLinux import ScreenShot as LinuxScreenShot
+from ConvolutionalNetwork.screencaptureWindows import ScreenShot as WinScreenShot
 
-sc = ScreenShot(100,100,700,700,False,"/ConvolutionalNetwork/models/MobileNetSSD_deploy.prototxt","/ConvolutionalNetwork/models/MobileNetSSD_deploy.caffemodel")
-sc.run()
+#linux_sc = LinuxScreenShot(100,100,700,700,False,"/ConvolutionalNetwork/models/MobileNetSSD_deploy.prototxt","/ConvolutionalNetwork/models/MobileNetSSD_deploy.caffemodel")
+#linux_sc.run()
 
+Win_sc = WinScreenShot(100,100,700,700,False,"/ConvolutionalNetwork/models/MobileNetSSD_deploy.prototxt","/ConvolutionalNetwork/models/MobileNetSSD_deploy.caffemodel")
+Win_sc.run()
 

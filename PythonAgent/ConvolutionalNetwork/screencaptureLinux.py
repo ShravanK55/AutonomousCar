@@ -109,7 +109,6 @@ class ScreenShot (threading.Thread):
             cv2.imshow("Screen", self.odprocessing(self.frame))
             if(self.fct):
                 print("Took "+str(time.time() - old_time)+" Sec")
-
-		print("reach")
+		
         cv2.destroyAllWindows()
         exit()

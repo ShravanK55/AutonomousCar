@@ -19,5 +19,9 @@ del %CD%\PIL-1.1.7.win32-py2.7.exe
 python %CD%\SetupFiles\get-pip.py
 echo Installing Dependecies.
 python -m pip install opencv-python
-
+python -m pip install numpy
+python -m pip install setuptools
+python -m pip install imutils
+python -m pip install pyautogui
+python -m pip install argparse
 Pause

@@ -10,7 +10,7 @@ import time
 import threading
 
 class ScreenShot (threading.Thread):
-    def __init__(self,point1x,point1y,point2x,point2y,saveOption):
+    def __init__(self,point1x,point1y,point2x,point2y,saveOption,proto_text,caffe_model):
         threading.Thread.__init__(self)
         self.save = saveOption
         self.count = 0
@@ -26,6 +26,11 @@ class ScreenShot (threading.Thread):
         self.resizeX = 0
         self.resizeY = 0
         self.resizeFlag = False
+        self.CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
+	        "bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
+	        "dog", "horse", "motorbike", "person", "pottedplant", "sheep",
+	        "sofa", "train", "tvmonitor","watch"]
+        self.net = cv2.dnn.readNetFromCaffe(os.getcwd()+proto_text, os.getcwd()+caffe_model)
 
     def run(self):
         self.Init()
@@ -49,23 +54,19 @@ class ScreenShot (threading.Thread):
         #print(self.location+self.fileName+str(self.count)+".jpg")
     
     def odprocessing(self,frame):
-        CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
-	        "bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
-	        "dog", "horse", "motorbike", "person", "pottedplant", "sheep",
-	        "sofa", "train", "tvmonitor","watch"]
-        COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
+        
+        COLORS = np.random.uniform(0, 255, size=(len(self.CLASSES), 3))
 
-        print("[INFO] loading model...")
-        net = cv2.dnn.readNetFromCaffe('/models/MobileNetSSD_deploy.prototxt', '/models/MobileNetSSD_deploy.caffemodel')
+        
 
         (h, w) = frame.shape[:2]
         blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)),
             0.007843, (300, 300), 127.5)
     
-        # pass the blob through the network and obtain the detections and
+        # pass the blob through the self.network and obtain the detections and
         # predictions
-        net.setInput(blob)
-        detections = net.forward()
+        self.net.setInput(blob)
+        detections = self.net.forward()
 
             # loop over the detections
         for i in np.arange(0, detections.shape[2]):
@@ -75,7 +76,7 @@ class ScreenShot (threading.Thread):
     
             # filter out weak detections by ensuring the `confidence` is
             # greater than the minimum confidence
-            if confidence > args["confidence"]:
+            if confidence > 0.2:
                 # extract the index of the class label from the
                 # `detections`, then compute the (x, y)-coordinates of
                 # the bounding box for the object
@@ -84,7 +85,7 @@ class ScreenShot (threading.Thread):
                 (startX, startY, endX, endY) = box.astype("int")
     
                 # draw the prediction on the frame
-                label = "{}: {:.2f}%".format(CLASSES[idx],
+                label = "{}: {:.2f}%".format(self.CLASSES[idx],
                     confidence * 100)
                 cv2.rectangle(frame, (startX, startY), (endX, endY),
                     COLORS[idx], 2)
@@ -105,8 +106,9 @@ class ScreenShot (threading.Thread):
                         self.frame, (self.resizeX, self.resizeY))
                 self.saveimage(self.frame)
                 self.count = self.count + 1
-            cv2.imshow("Screen", odprocessing(self.frame))
+            cv2.imshow("Screen", self.odprocessing(self.frame))
             if(self.fct):
                 print("Took "+str(time.time() - old_time)+" Sec")
-
+		
         cv2.destroyAllWindows()
+        exit()

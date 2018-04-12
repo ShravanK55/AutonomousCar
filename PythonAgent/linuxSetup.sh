@@ -1,4 +1,11 @@
 #!/bin/sh
+echo "**************************************"
+echo "*     Author: Kiran r                *"
+echo "*     Dependencies installer         *"
+echo "**************************************"
+echo ""
+echo ""
+sleep 3
 echo "***************************************"
 echo "python installation"
 echo "***************************************"
