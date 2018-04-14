@@ -1,4 +1,14 @@
 #!/bin/sh
+<<<<<<< HEAD
+=======
+echo "**************************************"
+echo "*     Author: Kiran r                *"
+echo "*     Dependencies installer         *"
+echo "**************************************"
+echo ""
+echo ""
+sleep 3
+>>>>>>> Training
 echo "***************************************"
 echo "python installation"
 echo "***************************************"
