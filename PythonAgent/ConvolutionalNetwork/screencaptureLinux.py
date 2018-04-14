@@ -31,7 +31,6 @@ class ScreenShot (threading.Thread):
 	        "dog", "horse", "motorbike", "person", "pottedplant", "sheep",
 	        "sofa", "train", "tvmonitor","watch"]
         self.net = cv2.dnn.readNetFromCaffe(os.getcwd()+proto_text, os.getcwd()+caffe_model)
-        self.guicheck = True
 
     def run(self):
         self.Init()
@@ -90,16 +89,15 @@ class ScreenShot (threading.Thread):
                     confidence * 100)
                 cv2.rectangle(frame, (startX, startY), (endX, endY),
                     COLORS[idx], 2)
-                y = startY - 15 if startY - 15 > 15 else startY + 15
-                cv2.putText(frame, label, (startX, y),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
+                print(startX,startY,endX,endY)
+                #y = startY - 15 if startY - 15 > 15 else startY + 15
+                #cv2.putText(frame, label, (startX, y),
+                    #cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
         return frame
 
-    def killwindow(self):
-        self.guicheck = False
 
     def Init(self):
-        while(cv2.waitKey(1) & 0xFF != ord('q') & self.guicheck):
+        while(cv2.waitKey(1) & 0xFF != ord('q')):
             old_time = time.time()
             img = ImageGrab.grab(bbox=(self.x1, self.y1, self.x2, self.y2))
             img_np = np.array(img)

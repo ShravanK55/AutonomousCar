@@ -7,13 +7,11 @@
 #
 #****************************************************#
 import os
-import tkinter
+import Tkinter
 import platform
-from tkinter import Tk, Label, Button
+from Tkinter import Tk, Label, Button
 
 sc=""
-
-
 
 
 
