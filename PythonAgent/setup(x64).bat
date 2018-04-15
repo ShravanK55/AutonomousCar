@@ -12,7 +12,7 @@ start /wait %CD%\python-2.7.14.amd64.msi
 del %CD%\python-2.7.14.amd64.msi
 setx PATH C:\Python27
 
-bitsadmin /transfer "Python PIL setup" http://effbot.org/media/downloads/PIL-1.1.7.win32-py2.7.exe  %CD%\PIL-1.1.7.win32-py2.7.exe
+bitsadmin /transfer "Python PIL setup" https://github.com/lightkeeper/lswindows-lib/blob/master/amd64/python/PIL-1.1.7.win-amd64-py2.7.exe?raw=true  %CD%\PIL-1.1.7.win32-py2.7.exe
 start /wait %CD%\PIL-1.1.7.win32-py2.7.exe
 del %CD%\PIL-1.1.7.win32-py2.7.exe
 
