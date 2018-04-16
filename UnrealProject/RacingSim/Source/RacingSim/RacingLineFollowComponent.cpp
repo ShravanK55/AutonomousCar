@@ -13,6 +13,8 @@ URacingLineFollowComponent::URacingLineFollowComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	RaceCarRef = Cast<ARacingSimPawn>(GetOwner());
+
+	SteeringLookAhead = 500.0f;
 }
 
 
@@ -47,7 +49,7 @@ void URacingLineFollowComponent::CalculateSteeringAngle()
 		FVector X, Y, Z;
 		UKismetMathLibrary::BreakRotIntoAxes(RightVecRotator, X, Y, Z);
 		FRotator RotatorToRacingLine = UKismetMathLibrary::MakeRotFromX(Y);
-		FVector VectorToRacingLine = UKismetMathLibrary::GetForwardVector(RotatorToRacingLine) * 500;
+		FVector VectorToRacingLine = UKismetMathLibrary::GetForwardVector(RotatorToRacingLine) * SteeringLookAhead;
 
 		FVector RacingLinePoint = CarLocation - VectorToRacingLine;
 

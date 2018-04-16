@@ -44,6 +44,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	FRotator ArrowRotation;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float SteeringLookAhead;
+
 public:
 	UFUNCTION(BlueprintCallable)
 	void CalculateSteeringAngle();
