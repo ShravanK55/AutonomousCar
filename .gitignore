@@ -79,6 +79,10 @@ UnrealProject/RacingSim/DerivedDataCache/*
 # Art Assets
 UnrealProject/RacingSim/Content/Static/*
 
+# Plugins
+# Art Assets
+UnrealProject/RacingSim/Plugins/*
+
 # Maps
 *.umap
 
